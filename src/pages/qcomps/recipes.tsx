@@ -1,7 +1,7 @@
 interface Recipie {
   id: string,
   name: string,
-  ingredients: Set<String>
+  ingredients: Set<string>
 }
 
 export const recipes : Recipie[] = [{
@@ -18,25 +18,25 @@ export const recipes : Recipie[] = [{
   ingredients: new Set(['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini'])
 }];
 
-function IngredientItemList({ingredients} : {ingredients: Array<String>}) {
+function IngredientItemList({ingredients} : {ingredients: Array<string>}) {
   return (
-    ingredients.map(name => {
-      return (
-        <li>
-          {name}
-        </li>
-      )
-    })
+    <ul>
+      {ingredients.map(name => {
+        return (
+          <li key={name}>
+            {name}
+          </li>
+        )
+      })}
+    </ul>
   )
 }
 
-function Recipie({id, name, ingredients} : Recipie) {
+function Recipie({recipie} : {recipie: Recipie}) {
   return (
     <div>
-      <h2>{name}</h2>  
-      <ul id={id}>
-       <IngredientItemList ingredients={Array.from(ingredients.values())} />
-      </ul>
+      <h2>{recipie.name}</h2>  
+      <IngredientItemList ingredients={Array.from(recipie.ingredients.values())} />
     </div>
   )
 }
@@ -47,7 +47,7 @@ export default function RecipeList() {
       <h1>Recipes</h1>
       {recipes.map(recipie => {
           return (
-            <Recipie id={recipie.id} name={recipie.name} ingredients={recipie.ingredients} />
+            <Recipie key={recipie.id} recipie={recipie} />
           )
         })
       }
