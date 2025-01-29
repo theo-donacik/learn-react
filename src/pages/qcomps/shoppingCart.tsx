@@ -5,10 +5,10 @@ export default function RequestTracker() {
   const [completed, setCompleted] = useState(0);
 
   async function handleClick() {
-    setPending(pend => pend + 1);
+    setPending(pending + 1);
     await delay(3000);
-    setPending(pend => pend - 1);
-    setCompleted(comp => comp + 1);
+    setPending(pending - 1);
+    setCompleted(completed + 1);
   }
 
   return (

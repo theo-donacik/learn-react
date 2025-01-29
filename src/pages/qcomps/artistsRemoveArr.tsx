@@ -19,7 +19,7 @@ export default function List() {
           <li key={artist.id}>
             {artist.name}{' '}
             <button onClick={() => {
-              setArtists(artists.filter((a) => artist.id !== a.id))
+              artists.splice(artist.id, 1)
             }}>
               Delete
             </button>
